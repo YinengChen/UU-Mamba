@@ -9,17 +9,18 @@ from nnunetv2.paths import nnUNet_raw
 def make_out_dirs(dataset_id: int, task_name="ACDC"):
     dataset_name = f"Dataset{dataset_id:03d}_{task_name}"
 
-    out_dir = Path(nnUNet_raw.replace('"', "")) / dataset_name
+#     out_dir = Path(nnUNet_raw.replace('"', "")) / dataset_name
+    out_dir = Path("/workspace/U-Mamba/data/nnUNet_raw") / dataset_name
     out_train_dir = out_dir / "imagesTr"
     out_labels_dir = out_dir / "labelsTr"
     out_test_dir = out_dir / "imagesTs"
-    out_testlabels_dir = out_dir / "labelsTs"
+    out_testlabels_dir = out_dir / "labelsTs" #++
     
     os.makedirs(out_dir, exist_ok=True)
     os.makedirs(out_train_dir, exist_ok=True)
     os.makedirs(out_labels_dir, exist_ok=True)
     os.makedirs(out_test_dir, exist_ok=True)
-    os.makedirs(out_testlabels_dir, exist_ok=True)
+    os.makedirs(out_testlabels_dir, exist_ok=True) #++
     
     return out_dir, out_train_dir, out_labels_dir, out_test_dir, out_testlabels_dir
 
@@ -76,10 +77,15 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input_folder", type = str,
-                        help = "The downloaded ACDC dataset dir. Should contain extracted 'training' and 'testing' folders.")
-    parser.add_argument("-d", "--dataset_id", required = False, type = int, default = 27,
-                        help = "nnU-Net Dataset ID, default: 27")
+    parser.add_argument(
+        "-i",
+        "--input_folder",
+        type=str,
+        help="The downloaded ACDC dataset dir. Should contain extracted 'training' and 'testing' folders.",
+    )
+    parser.add_argument(
+        "-d", "--dataset_id", required=False, type=int, default=27, help="nnU-Net Dataset ID, default: 27"
+    )
     args = parser.parse_args()
     print("Converting...")
     convert_acdc(args.input_folder, args.dataset_id)
