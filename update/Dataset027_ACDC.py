@@ -11,7 +11,7 @@ def make_out_dirs(dataset_id: int, task_name="ACDC"):
 
 #     out_dir = Path(nnUNet_raw.replace('"', "")) / dataset_name
 #    out_dir = Path("/workspace/U-Mamba/data/nnUNet_raw") / dataset_name
-    out_dir = Path("/content/UU-Mamba/data/nnUNet_raw") / dataset_name  #colab
+    out_dir = Path("/content/UU-Mamba/data/nnUNet_raw/Dataset027_ACDC") / dataset_name  #colab
     out_train_dir = out_dir / "imagesTr"
     out_labels_dir = out_dir / "labelsTr"
     out_test_dir = out_dir / "imagesTs"
